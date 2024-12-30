@@ -21,24 +21,24 @@ sweep_config = {
     'method': 'random', #grid, random
     'parameters': {
         'epochs': {
-            'values': [30]
+            'values': [8,12]
         },
         'batch_size': {
             'values': [32] #8, 16,
         },
         'learning_rate': {
-            'values': [1e-3] #[1e-3, 1e-4, 3e-4, 3e-5, 1e-5]
+            'values': [1e-3] #[1e-3, 5e-4, 1e-4, 5e-5]
         },
         'weight_decay' : {
-            'values': [1e-4] #[1e-4, 1e-5, 1e-6, 3e-6]
+            'values': [1e-4] #[5e-5, 1e-5, 5e-6, 1e-6]
         },
         'tau' : {
-            'values' : [40]
+            'values' : [35, 45, 50, 55, 65]
         },
     }
 }
 
-sweep_id = wandb.sweep(sweep_config, project="240614-1")
+sweep_id = wandb.sweep(sweep_config, project="RADAR")
 
 
 
@@ -50,11 +50,11 @@ device = torch.device('cuda:0')
 def train_main():
 
     config_defaults = {
-        'epochs': 5,
+        'epochs': 8,
         'batch_size': 32,
         'learning_rate': 1e-3,
-        'weight_decay' : 1e-4,
-        'tau' : 40,
+        'weight_decay' : 5e-5,
+        'tau' : 50,
     }
     wandb.init(config=config_defaults)
     config = wandb.config
