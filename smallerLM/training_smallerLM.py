@@ -40,17 +40,17 @@ tokenized_datasets = raw_datasets.map(preprocess_function, batched=True)
 model = T5ForConditionalGeneration.from_pretrained("./saved/flant5-large-model-origin.pt", device_map="auto")
 
 
-batch_size = 4
+batch_size = 32
 model_name = 'my_flant5'
 args = Seq2SeqTrainingArguments(
     model_name,
     evaluation_strategy = "epoch", # evalute after every epoch
-    learning_rate=5e-6,  #2e-5
+    learning_rate=1e-4,
     per_device_train_batch_size=batch_size,
     per_device_eval_batch_size=batch_size,
-    weight_decay=0.001,
-    save_total_limit=3,
-    num_train_epochs=3,
+    weight_decay=0.00001,
+    save_total_limit=8,
+    num_train_epochs=8,
     predict_with_generate=True,
     fp16=False,  #True,
     push_to_hub=False,
