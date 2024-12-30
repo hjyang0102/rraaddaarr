@@ -15,7 +15,7 @@ input_for_GPT_file = 'train_data_new.json'
 output_from_GPT_file = "train_data_new_augmented_CC.json"
 
 chatgptmodel = 'gpt-3.5-turbo'
-chatgptmodel_list = ['gpt-3.5-turbo', 'gpt-3.5-turbo-0125', 'gpt-3.5-turbo-0301', 'gpt-3.5-turbo-0613', 'gpt-3.5-turbo-1106']
+chatgptmodel_list = ['gpt-3.5-turbo-1106']
 chatgptmodel_num = 0
 
 
