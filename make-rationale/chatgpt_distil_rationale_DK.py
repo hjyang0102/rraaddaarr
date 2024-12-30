@@ -66,19 +66,6 @@ def processed_attr_text_to_entityID(list_rationale_DK_processed):
     return temp_list
 
 
-def fill_list_to_ten(input_list):
-    if len(input_list) == 0:
-        return [24635, 24635, 24635, 24635, 24635, 24635, 24635, 24635, 24635, 24635]
-
-
-    if len(input_list) >= 10:
-        return input_list
-
-    while len(input_list) < 10:
-        input_list.append(random.choice(input_list))
-
-    return input_list
-
 
 def most_frequent_element(input_list):
     counter = collections.Counter(input_list)
@@ -186,10 +173,7 @@ with open(input_for_GPT_file, 'r', encoding='utf-8') as f:
         conv_info['rationale_DK_raw'] = list_rationale_DK_raw
         conv_info['rationale_DK_processed'] = list_rationale_DK_processed
 
-
-        preferred_attrs = fill_list_to_ten(processed_attr_text_to_entityID(list_rationale_DK_processed))
-
-        most_preferred_attr = most_frequent_element(preferred_attrs)
+        most_preferred_attr = most_frequent_element(list_rationale_DK_processed)
 
 
         conv_info['preferred_attrs'] = preferred_attrs
