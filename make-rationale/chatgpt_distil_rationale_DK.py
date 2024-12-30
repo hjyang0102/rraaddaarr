@@ -17,7 +17,7 @@ client = OpenAI(
     api_key = '___',
 )
 
-howmanyrationaleDoyouNeed = 3# 4 #10
+howmanyrationaleDoyouNeed = 10
 movie_dict_file = 'movies_with_age_rating.json'
 
 
@@ -29,14 +29,14 @@ output_from_GPT_file = 'train_data_new_augmented_DK.json'
 
 
 chatgptmodel = 'gpt-3.5-turbo'
-chatgptmodel_list = ['gpt-3.5-turbo', 'gpt-3.5-turbo-0125', 'gpt-3.5-turbo-0301', 'gpt-3.5-turbo-0613', 'gpt-3.5-turbo-1106','gpt-3.5-turbo-16k','gpt-3.5-turbo-16k-0613']
+chatgptmodel_list = ['gpt-3.5-turbo-1106']
 chatgptmodel_num = 0
 
 conv_ID_20000 = '3005-1'
 stopped_convID = '10483-2'
 flag = 1
-mothaemuckgetdda_max = 375
-mothaemuckgetdda = 0
+dda_max = 375
+dda = 0
 
 with open('entity2id_new.json', 'r', encoding='utf-8') as f:
     entity2id = json.load(f)
@@ -137,13 +137,13 @@ with open(input_for_GPT_file, 'r', encoding='utf-8') as f:
                 )
             except OpenAIError as e:
                 time.sleep(5)
-                mothaemuckgetdda = mothaemuckgetdda + 1
+                dda = dda + 1
 
-                if mothaemuckgetdda > mothaemuckgetdda_max:
+                if dda > dda_max:
                     file_name = extract_filename_part(output_from_GPT_file) + str(split_count) + '.json'
                     outout_dict['version'] = "0.1.0"
                     outout_dict['data'] = updated_data
-                    print("----mothaemuckgetdda----")
+                    print("----dda----")
                     print(file_name)
                     with open(file_name, "w") as f:
                         json.dump(outout_dict, f, indent=4)
