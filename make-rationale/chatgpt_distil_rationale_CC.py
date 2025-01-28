@@ -44,7 +44,7 @@ with open(input_for_GPT_file, 'r', encoding='utf-8') as f:
             continue
 
 
-        prompt_next_response_not_included = 'Instruction:The conversation is an interaction between a user and a movie recommender. What contextual conditions (i.e., watching purpose or watching situation) will affect to a movie recommendation based on the conversation. (e.g., time pass, to get motivated, for entertainment, emotional impact, to acquire information, with family, with a partner, with friends, for a sleepover, for a movie club, for a family gathering, etc.) Do not generate a lengthy answer.'
+        prompt_next_response_not_included = 'Instruction: The conversation is an interaction between a user and a movie recommender. Identify the contextual conditions (e.g., time pass, to get motivated, for entertainment, emotional impact, to acquire information, with family, with a partner, with friends, for a sleepover, for a movie club, for a family gathering, etc.) that affected the movie recommendation in the gold response based on the conversation. Do not generate a lengthy answer.'
 
         prompt_next_response_not_included = prompt_next_response_not_included + conv_info['context']
         prompt_next_response_included = prompt_next_response_included + conv_info['context']
