@@ -179,7 +179,7 @@ class recommendation(nn.Module):
         mask[:, self.item_list] = False
 
 
-        masked_labels = labels.masked_fill(mask, float('-inf')) # 제외할 값을 -inf로 변경
+        masked_labels = labels.masked_fill(mask, float('-inf')) #Set to -inf to exclude them
 
         return masked_labels
 
