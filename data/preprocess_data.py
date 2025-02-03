@@ -71,7 +71,6 @@ def replace_movie_num_to_name(text, movie_dic):
 
 
 
-
 outout_dict = {}
 updated_data = []
 
@@ -109,7 +108,7 @@ with open(input_data_file,'r',encoding='utf-8') as f:
             mentioned_movies_n_attrs = []
 
             if messages[i]['senderWorkerId'] == recommender_ID and len(messages[i]['item']) > 0 :  
-            #recommender의 턴에서 + 추천이 하나라도 있으면, 이전의 context 조합
+            #if in the response of recommender,, at least one recommendation ,, previous context combo
                 new_conv_data = {}
 
                 for ii in range(i):
@@ -117,10 +116,10 @@ with open(input_data_file,'r',encoding='utf-8') as f:
                         mentioned_movies_n_attrs.append(movies_n_attrs)
 
                     if messages[ii]['senderWorkerId'] == recommender_ID: 
-                        #recommender인경우
-                        context =  context + 'recommender:' + messages[ii]['text'] +'\n'                                #context = 'recommender:' + replace_movie_num_to_name(messages[ii]['text'], mentioned_movie_dic)
+                        #if recommender
+                        context =  context + 'recommender:' + messages[ii]['text'] +'\n'                               
                     else: 
-                        #user인경우
+                        #if user
                         context =  context + 'user:' + messages[ii]['text'] +'\n'
 
 
@@ -156,7 +155,7 @@ with open(input_data_file,'r',encoding='utf-8') as f:
                         count = count + 1 
                     temp_list.append(entity2id[movie_n_attr])
                 
-                loop_count = 20 - len(temp_list) #20으로 해준이유는.. 걍 !!
+                loop_count = 20 - len(temp_list) 
                 for i in range(loop_count):
                     temp_list.append(24635)
 
@@ -164,20 +163,7 @@ with open(input_data_file,'r',encoding='utf-8') as f:
 
                 updated_data.append(new_conv_data)
 
-                #print(messages[i]['text'])
-                #print(replace_movie_num_to_name(messages[i]['text'], mentioned_movie_dic))
-                # print(new_conv_Id)
-                # print("[context]")                    
-                # print(context)
-                # print("[next_response]")
-                # print(next_response)
-                # print("------------------------")
-                
 
-        
-
-
-        #exit()
 
 
 outout_dict['version'] = "0.1.0"
